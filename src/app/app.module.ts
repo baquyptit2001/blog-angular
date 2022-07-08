@@ -26,6 +26,11 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { AvatarComponent } from './common/avatar/avatar.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatListModule} from "@angular/material/list";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import { FooterComponent } from './common/footer/footer.component';
+import { LoaderComponent } from './common/loader/loader.component';
+import { AuthComponent } from './layout/auth/auth.component';
+import { ClientComponent } from './layout/client/client.component';
 
 registerLocaleData(vi);
 
@@ -37,6 +42,10 @@ registerLocaleData(vi);
     BlogComponent,
     BlogDetailComponent,
     AvatarComponent,
+    FooterComponent,
+    LoaderComponent,
+    AuthComponent,
+    ClientComponent,
   ],
     imports: [
         BrowserModule,
@@ -55,6 +64,7 @@ registerLocaleData(vi);
         MatProgressSpinnerModule,
         MatCardModule,
         MatListModule,
+        MatPaginatorModule,
     ],
   providers: [{provide: NZ_I18N, useValue: en_US}],
   bootstrap: [AppComponent]

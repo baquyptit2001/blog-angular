@@ -10,8 +10,8 @@ const routes: Routes = [
   {
     path: 'blogs',
     children: [
-      {path: '', component: BlogComponent, canActivate: [AuthGuardService]},
-      {path: ':id', component: BlogDetailComponent}
+      {path: '', component: BlogComponent},
+      {path: ':slug', component: BlogDetailComponent}
     ],
   },
   {path: '**', redirectTo: ''}
