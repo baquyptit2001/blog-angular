@@ -8,7 +8,7 @@ import {en_US, NZ_I18N, vi_VN} from 'ng-zorro-antd/i18n';
 import {registerLocaleData} from '@angular/common';
 import en from '@angular/common/locales/en';
 import vi from '@angular/common/locales/vi';
-import {FormsModule} from '@angular/forms';
+import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {NzPageHeaderModule} from "ng-zorro-antd/page-header";
 import {MatSliderModule} from "@angular/material/slider";
@@ -31,6 +31,9 @@ import { FooterComponent } from './common/footer/footer.component';
 import { LoaderComponent } from './common/loader/loader.component';
 import { AuthComponent } from './layout/auth/auth.component';
 import { ClientComponent } from './layout/client/client.component';
+import {LoginComponent} from "./auth/login/login.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import { RegisterComponent } from './auth/register/register.component';
 
 registerLocaleData(vi);
 
@@ -46,27 +49,30 @@ registerLocaleData(vi);
     LoaderComponent,
     AuthComponent,
     ClientComponent,
+    LoginComponent,
+    RegisterComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        HttpClientModule,
-        NzPageHeaderModule,
-        MatSliderModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatButtonModule,
-        MatMenuModule,
-        MatBadgeModule,
-        MatDividerModule,
-        MatProgressSpinnerModule,
-        MatCardModule,
-        MatListModule,
-        MatPaginatorModule,
-    ],
-  providers: [{provide: NZ_I18N, useValue: en_US}],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
+    NzPageHeaderModule,
+    MatSliderModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatBadgeModule,
+    MatDividerModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
+    MatListModule,
+    MatPaginatorModule,
+    ReactiveFormsModule,
+  ],
+  providers: [{provide: NZ_I18N, useValue: en_US}, FormBuilder, MatSnackBar],
   bootstrap: [AppComponent]
 })
 export class AppModule {

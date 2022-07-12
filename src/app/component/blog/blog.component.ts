@@ -15,6 +15,7 @@ export class BlogComponent implements OnInit {
   }
 
   posts: Post[] = [];
+  total: number = 0;
   loading = false;
 
   // @ts-ignore
@@ -29,7 +30,7 @@ export class BlogComponent implements OnInit {
     this.blogService.getBlogs(category, sort, page, size).subscribe(
       (posts: any) => {
         this.posts = posts.posts;
-        console.log(this.posts);
+        this.total = posts.total;
         this.loading = false;
       }, error => {
         console.log(error);

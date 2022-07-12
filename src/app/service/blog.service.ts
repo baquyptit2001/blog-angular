@@ -6,7 +6,7 @@ import {API_URL} from "../app.constants";
 
 class PostResponse {
   posts: Post[] = [];
-
+  total: number = 0;
 }
 
 @Injectable({

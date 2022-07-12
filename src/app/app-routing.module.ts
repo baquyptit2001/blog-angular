@@ -3,16 +3,33 @@ import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from "./component/home/home.component";
 import {BlogComponent} from "./component/blog/blog.component";
 import {BlogDetailComponent} from "./component/blog-detail/blog-detail.component";
-import {AuthGuardService} from "./service/auth-guard.service";
+import {ClientComponent} from "./layout/client/client.component";
+import {AuthComponent} from "./layout/auth/auth.component";
+import {LoginComponent} from "./auth/login/login.component";
+import {RegisterComponent} from "./auth/register/register.component";
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
   {
-    path: 'blogs',
+    path: '',
+    component: ClientComponent,
     children: [
-      {path: '', component: BlogComponent},
-      {path: ':slug', component: BlogDetailComponent}
-    ],
+      {path: '', component: HomeComponent},
+      {
+        path: 'blogs',
+        children: [
+          {path: '', component: BlogComponent},
+          {path: ':slug', component: BlogDetailComponent}
+        ],
+      },
+    ]
+  },
+  {
+    path: 'auth',
+    component: AuthComponent,
+    children: [
+      {path: 'login', component: LoginComponent},
+      {path: 'register', component: RegisterComponent},
+    ]
   },
   {path: '**', redirectTo: ''}
 ];

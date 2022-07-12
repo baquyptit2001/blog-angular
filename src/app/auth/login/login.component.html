@@ -1,1 +1,41 @@
-<p>login works!</p>
+<h3 class="login-heading mb-4">Đăng nhập</h3>
+
+<form method="post" [formGroup]="loginForm" (ngSubmit)="login()">
+  <div class="error-message">
+    <div *ngIf="loginForm.controls['email'].hasError('required') && loginForm.controls['email'].touched">
+      Email is required
+    </div>
+    <div *ngIf="loginForm.controls['email'].hasError('email') && loginForm.controls['email'].touched">
+      Email is invalid
+    </div>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="email" class="form-control" id="floatingInput" formControlName="email" placeholder="name@example.com">
+    <label for="floatingInput">Email</label>
+  </div>
+  <div class="error-message">
+    <div *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">
+      Password is required
+    </div>
+    <div *ngIf="loginForm.controls['password'].hasError('minlength') && loginForm.controls['password'].touched">
+      Password must be at least 8 characters
+    </div>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="password" class="form-control" id="floatingPassword" formControlName="password" placeholder="Password">
+    <label for="floatingPassword">Mật khẩu</label>
+  </div>
+
+  <div class="d-grid">
+    <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit"
+            [disabled]="loginForm.invalid">Đăng nhập
+    </button>
+    <div class="text-center">
+      <a class="small" href="#">Quên mật khẩu?</a>
+    </div>
+    <div class="text-center">
+      <span class="small">Chưa có tài khoản? <a routerLink="/auth/register">Đăng ký</a></span>
+    </div>
+  </div>
+
+</form>

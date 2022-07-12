@@ -1,0 +1,56 @@
+<h3 class="login-heading mb-4">Đăng ký</h3>
+
+<form method="post" [formGroup]="registerForm" (ngSubmit)="register()">
+  <div class="error-message">
+    <div *ngIf="registerForm.controls['name'].hasError('required') && registerForm.controls['name'].touched">
+      Name is required
+    </div>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control" id="floatingName" formControlName="name" placeholder="Ba Quy">
+    <label for="floatingName">Tên hiển thị</label>
+  </div>
+  <div class="error-message">
+    <div *ngIf="registerForm.controls['email'].hasError('required') && registerForm.controls['email'].touched">
+      Email is required
+    </div>
+    <div *ngIf="registerForm.controls['email'].hasError('email') && registerForm.controls['email'].touched">
+      Email is invalid
+    </div>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="email" class="form-control" id="floatingInput" formControlName="email" placeholder="name@example.com">
+    <label for="floatingInput">Email</label>
+  </div>
+  <div class="error-message">
+    <div *ngIf="registerForm.controls['password'].hasError('required') && registerForm.controls['password'].touched">
+      Password is required
+    </div>
+    <div *ngIf="registerForm.controls['password'].hasError('minlength') && registerForm.controls['password'].touched">
+      Password must be at least 8 characters
+    </div>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="password" class="form-control" id="floatingPassword" formControlName="password" placeholder="Password">
+    <label for="floatingPassword">Mật khẩu</label>
+  </div>
+  <div class="error-message">
+    <div *ngIf="registerForm.controls['password_confirmation'].hasError('mustMatch') && registerForm.controls['password_confirmation'].touched">
+      Password does not match
+    </div>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="password" class="form-control" id="floatingPasswordConfirm" formControlName="password_confirmation" placeholder="Password">
+    <label for="floatingPassword">Xác nhận mật khẩu</label>
+  </div>
+
+  <div class="d-grid">
+    <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit"
+            [disabled]="registerForm.invalid">Đăng ký
+    </button>
+    <div class="text-center">
+      <span class="small">Đã có tài khoản? <a routerLink="/auth/login">Đăng nhập</a></span>
+    </div>
+  </div>
+
+</form>

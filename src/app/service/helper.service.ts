@@ -1,11 +1,14 @@
 import {Injectable} from '@angular/core';
+import {User} from "../model/user";
+import {CookieService} from "ngx-cookie-service";
+import {HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class HelperService {
 
-  constructor() {
+  constructor(private cookieService: CookieService) {
   }
 
   getAvatarName = (name: string): string => {
@@ -29,10 +32,34 @@ export class HelperService {
     return text + "...";
   }
 
-   setHeader = (token: string): Headers => {
-     return new Headers({
+  setHeader = (): HttpHeaders => {
+    let token = this.cookieService.get('access_token');
+    return new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + token
     });
-   }
+  }
+
+  getUser = (): User => {
+    let user: User = new User();
+    user.name = this.cookieService.get('user.name');
+    user.email = this.cookieService.get('user.email');
+    user.id = this.cookieService.get('user.id');
+    user.live = this.cookieService.get('user.live');
+    user.address = this.cookieService.get('user.address');
+    user.phone_number = this.cookieService.get('user.phone_number');
+    user.birthday = new Date(this.cookieService.get('user.birthday'));
+    return user;
+  }
+
+  clearUser = (): void => {
+    this.cookieService.delete('access_token');
+    this.cookieService.delete('user.name');
+    this.cookieService.delete('user.email');
+    this.cookieService.delete('user.id');
+    this.cookieService.delete('user.live');
+    this.cookieService.delete('user.address');
+    this.cookieService.delete('user.phone_number');
+    this.cookieService.delete('user.birthday');
+  }
 }

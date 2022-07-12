@@ -1,20 +1,29 @@
 <p>
   <mat-toolbar color="accent">
-    <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon"
+    <button mat-icon-button [matMenuTriggerFor]="isLoggedIn ? profile : menu" class="example-icon"
             aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/auth/login">
+        <span>Đăng nhập</span>
+      </button>
+      <button mat-menu-item routerLink="/auth/register">
+        <span>Đăng ký</span>
+      </button>
+    </mat-menu>
+    <mat-menu #profile="matMenu">
+      <span mat-menu-item>
+        <span>Hello, {{ user.name }}</span>
+      </span>
+      <mat-divider></mat-divider>
       <button mat-menu-item>
         <mat-icon>account_circle</mat-icon>
         <span>Cá nhân</span>
       </button>
-      <mat-divider></mat-divider>
-      <button mat-menu-item>
-        <span>Đăng nhập</span>
-      </button>
-      <button mat-menu-item>
-        <span>Đăng ký</span>
+      <button mat-menu-item (click)="logOut()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Đăng xuất</span>
       </button>
     </mat-menu>
     <span routerLink="/" style="cursor: pointer">NBQ</span>
