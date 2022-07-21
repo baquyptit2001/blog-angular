@@ -3,6 +3,8 @@ import {Post} from "../../model/post";
 import {BlogService} from "../../service/blog.service";
 import {HelperService} from "../../service/helper.service";
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
+import {Store} from "@ngrx/store";
+import {SideBarComponent} from "../../common/side-bar/side-bar.component";
 
 @Component({
   selector: 'app-blog',
@@ -11,22 +13,35 @@ import {MatPaginator, PageEvent} from "@angular/material/paginator";
 })
 export class BlogComponent implements OnInit {
 
-  constructor(private blogService: BlogService, public helperService: HelperService) {
+  constructor(private blogService: BlogService, public helperService: HelperService, private store: Store) {
   }
 
   posts: Post[] = [];
   total: number = 0;
   loading = false;
+  page: PageEvent = {
+    pageIndex: 0,
+    pageSize: 5,
+    length: 0,
+    previousPageIndex: 0
+  };
+  categorySearch!: number[];
+  sort: number = -1;
 
-  // @ts-ignore
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
   ngOnInit(): void {
     this.getPosts();
   }
 
-  getPosts(category: number = 0, sort: number = 1, page: number = 1, size: number = 5): void {
+  getPosts(category: number|number[] = 0, sort: number = 1, page: number = 1, size: number = 5): void {
     this.loading = true;
+    if (this.categorySearch != undefined) {
+      category = this.categorySearch;
+    }
+    if (this.sort != -1) {
+      sort = this.sort;
+    }
     this.blogService.getBlogs(category, sort, page, size).subscribe(
       (posts: any) => {
         this.posts = posts.posts;
@@ -38,7 +53,14 @@ export class BlogComponent implements OnInit {
   }
 
   onPageChange($event: PageEvent) {
+    this.store.dispatch({type: 'getPage', payload: $event.pageIndex + 1});
     this.getPosts(0, 1, $event.pageIndex + 1, $event.pageSize);
-    console.log($event);
+    this.page = $event;
   }
+
+  updateCategorySearch($event: any) {
+    this.categorySearch = $event.category;
+    this.sort = $event.sort;
+  }
+
 }

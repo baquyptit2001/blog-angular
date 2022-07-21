@@ -32,6 +32,10 @@ export class HelperService {
     return text + "...";
   }
 
+  isLogin = (): boolean => {
+    return this.cookieService.check('user.id');
+  }
+
   setHeader = (): HttpHeaders => {
     let token = this.cookieService.get('access_token');
     return new HttpHeaders({

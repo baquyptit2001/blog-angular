@@ -1,3 +1,4 @@
+<app-side-bar (onChange)="updateCategorySearch($event)"></app-side-bar>
 <mat-paginator [length]="total"
                [pageSize]="5"
                [pageSizeOptions]="[5, 10, 25, 100]"
@@ -6,11 +7,10 @@
                aria-label="Select page">
 </mat-paginator>
 <div class="load" *ngIf="loading;else content">
-  <!--  <mat-spinner color="accent"></mat-spinner>-->
   <app-loader></app-loader>
 </div>
 <ng-template #content>
-  <div class="d-flex justify-content-around row">
+  <div class="justify-content-around row">
     <div class="col-4 h-100 mt-3" *ngFor="let post of posts">
       <mat-card class="example-card">
         <div class="d-flex align-items-center">
@@ -20,6 +20,7 @@
             <mat-card-subtitle>Fresher</mat-card-subtitle>
           </mat-card-header>
         </div>
+        <app-tag [name]="post.category.name"></app-tag>
         <img mat-card-image [src]="post.image" alt="{{ post.title }}" [routerLink]="post.slug" style="cursor: pointer">
         <div style="min-height: 60px">
           <a matLine class="blog-title" [routerLink]="post.slug">{{ helperService.longName(post.title) }}</a>

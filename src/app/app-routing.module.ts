@@ -7,6 +7,7 @@ import {ClientComponent} from "./layout/client/client.component";
 import {AuthComponent} from "./layout/auth/auth.component";
 import {LoginComponent} from "./auth/login/login.component";
 import {RegisterComponent} from "./auth/register/register.component";
+import {SideBarComponent} from "./common/side-bar/side-bar.component";
 
 const routes: Routes = [
   {
