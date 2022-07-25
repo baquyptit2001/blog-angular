@@ -8,6 +8,8 @@ import {AuthComponent} from "./layout/auth/auth.component";
 import {LoginComponent} from "./auth/login/login.component";
 import {RegisterComponent} from "./auth/register/register.component";
 import {SideBarComponent} from "./common/side-bar/side-bar.component";
+import {ForgotPasswordComponent} from "./component/forgot-password/forgot-password.component";
+import {ChangePasswordComponent} from "./component/change-password/change-password.component";
 
 const routes: Routes = [
   {
@@ -25,11 +27,18 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'auth',
+    path: 'accounts',
     component: AuthComponent,
     children: [
       {path: 'login', component: LoginComponent},
       {path: 'register', component: RegisterComponent},
+      {
+        path: 'forgot_password',
+        children: [
+          {path: '', component: ForgotPasswordComponent},
+          {path: ':token', component: ChangePasswordComponent}
+        ]
+      }
     ]
   },
   {path: '**', redirectTo: ''}

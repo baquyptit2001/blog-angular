@@ -5,6 +5,7 @@ import {HelperService} from "../../service/helper.service";
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {Store} from "@ngrx/store";
 import {SideBarComponent} from "../../common/side-bar/side-bar.component";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-blog',
@@ -13,7 +14,7 @@ import {SideBarComponent} from "../../common/side-bar/side-bar.component";
 })
 export class BlogComponent implements OnInit {
 
-  constructor(private blogService: BlogService, public helperService: HelperService, private store: Store) {
+  constructor(private blogService: BlogService, public helperService: HelperService, private store: Store, private titleService: Title) {
   }
 
   posts: Post[] = [];
@@ -32,6 +33,7 @@ export class BlogComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPosts();
+    this.titleService.setTitle('Bài viết');
   }
 
   getPosts(category: number|number[] = 0, sort: number = 1, page: number = 1, size: number = 5): void {

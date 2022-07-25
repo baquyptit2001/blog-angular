@@ -1,0 +1,12 @@
+.info-comment {
+  flex-wrap: wrap;
+
+  .comment-user {
+    display: block;
+    width: 100%;
+
+    ::ng-deep .mat-card-header-text {
+      margin: 0 !important;
+    }
+  }
+}

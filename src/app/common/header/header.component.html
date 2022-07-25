@@ -5,10 +5,11 @@
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="/auth/login">
+      <button mat-menu-item routerLink="/accounts/login">
         <span>Đăng nhập</span>
       </button>
-      <button mat-menu-item routerLink="/auth/register">
+      <mat-divider></mat-divider>
+      <button mat-menu-item routerLink="/accounts/register">
         <span>Đăng ký</span>
       </button>
     </mat-menu>

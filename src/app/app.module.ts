@@ -46,6 +46,8 @@ import {MatInputModule} from "@angular/material/input";
 import {PaginatorModule} from "primeng/paginator";
 import {SkeletonModule} from "primeng/skeleton";
 import { SkeletonCommentComponent } from './common/skeleton-comment/skeleton-comment.component';
+import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './component/change-password/change-password.component';
 
 registerLocaleData(vi);
 
@@ -66,6 +68,8 @@ registerLocaleData(vi);
     SideBarComponent,
     TagComponent,
     SkeletonCommentComponent,
+    ForgotPasswordComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

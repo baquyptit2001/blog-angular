@@ -21,8 +21,8 @@
     <mat-card class="shadow" style="border-radius: 20px">
       <div class="d-flex align-items-center">
         <app-avatar name="{{ helperService.getAvatarName(comment.user.name) }}"></app-avatar>
-        <div>
-          <mat-card-header>
+        <div class="d-flex info-comment ms-3 mt-3">
+          <mat-card-header class="comment-user" style="margin: 0;">
             <mat-card-title>
               {{ comment.user.name }}
             </mat-card-title>
@@ -55,7 +55,7 @@
     <button mat-raised-button color="accent">Comment</button>
   </form>
   <ng-template #pleaseLogin>
-    Bạn chưa đăng nhập, hãy <a routerLink="/auth/login">đăng nhập</a> để bình luận
+    Bạn chưa đăng nhập, hãy <a routerLink="/accounts/login">đăng nhập</a> để bình luận
   </ng-template>
 
 </ng-template>

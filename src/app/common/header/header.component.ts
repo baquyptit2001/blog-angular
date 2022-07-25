@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
     this.http.get<any>(API_URL + 'auth/logout', {headers: this.helper.setHeader()}).subscribe(
       (data: any) => {
         console.log(data);
-        this.router.navigate(['/auth/login']).then(r => {
+        this.router.navigate(['/accounts/login']).then(r => {
           this.helper.clearUser();
             this._snackBar.open('Đăng xuất thành công', 'Đóng', {
               duration: 5000,

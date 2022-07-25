@@ -7,6 +7,7 @@ import {HelperService} from "../../service/helper.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import Pusher from 'pusher-js';
 import {Paginator} from "primeng/paginator";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-blog-detail',
@@ -31,7 +32,7 @@ export class BlogDetailComponent implements OnInit {
     content: new FormControl('', [Validators.required])
   });
 
-  constructor(private activatedRoute: ActivatedRoute, private blogService: BlogService, public helperService: HelperService, private formBuilder: FormBuilder) {
+  constructor(private activatedRoute: ActivatedRoute, private blogService: BlogService, public helperService: HelperService, private formBuilder: FormBuilder, private titleService: Title) {
   }
 
   ngOnInit(): void {
@@ -50,6 +51,7 @@ export class BlogDetailComponent implements OnInit {
         this.totalComment = this.post.comment_count;
         this.pusher();
         this.loading = false;
+        this.titleService.setTitle(this.post.title);
       }, error => {
         console.log(error);
       })
@@ -88,6 +90,7 @@ export class BlogDetailComponent implements OnInit {
     this.blogService.getComments(this.slug, this.comments.length).subscribe(
       (data: any) => {
         this.comments.push(...data.comments);
+        console.log(this.comments);
         this.commentLoading = false;
         this.isEnd = data.is_end;
       }
